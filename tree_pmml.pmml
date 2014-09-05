@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 http://www.dmg.org/v4-1/pmml-4-1.xsd">
+ <Header copyright="Copyright (c) 2014 mma" description="RPart Decision Tree Model">
+  <Extension name="user" value="mma" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2014-09-05 20:23:34</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="13">
+  <DataField name="Label" optype="continuous" dataType="double"/>
+  <DataField name="I1" optype="continuous" dataType="double"/>
+  <DataField name="I2" optype="continuous" dataType="double"/>
+  <DataField name="I3" optype="continuous" dataType="double"/>
+  <DataField name="I4" optype="continuous" dataType="double"/>
+  <DataField name="I6" optype="continuous" dataType="double"/>
+  <DataField name="I7" optype="continuous" dataType="double"/>
+  <DataField name="I8" optype="continuous" dataType="double"/>
+  <DataField name="I9" optype="continuous" dataType="double"/>
+  <DataField name="I10" optype="continuous" dataType="double"/>
+  <DataField name="I11" optype="continuous" dataType="double"/>
+  <DataField name="I12" optype="continuous" dataType="double"/>
+  <DataField name="I13" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <TreeModel modelName="RPart_Model" functionName="regression" algorithmName="rpart" splitCharacteristic="binarySplit" missingValueStrategy="defaultChild">
+  <MiningSchema>
+   <MiningField name="Label" usageType="predicted"/>
+   <MiningField name="I1" usageType="active"/>
+   <MiningField name="I2" usageType="active"/>
+   <MiningField name="I3" usageType="active"/>
+   <MiningField name="I4" usageType="active"/>
+   <MiningField name="I6" usageType="active"/>
+   <MiningField name="I7" usageType="active"/>
+   <MiningField name="I8" usageType="active"/>
+   <MiningField name="I9" usageType="active"/>
+   <MiningField name="I10" usageType="active"/>
+   <MiningField name="I11" usageType="active"/>
+   <MiningField name="I12" usageType="active"/>
+   <MiningField name="I13" usageType="active"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_Label" optype="continuous" dataType="double" feature="predictedValue"/>
+  </Output>
+  <Node id="1" score="0.25584" recordCount="1e+05" defaultChild="2">
+   <True/>
+   <Node id="2" score="0.199405369166642" recordCount="68614" defaultChild="4">
+    <CompoundPredicate booleanOperator="surrogate">
+     <SimplePredicate field="I1" operator="lessThan" value="0.5"/>
+     <SimplePredicate field="I10" operator="lessThan" value="0.5"/>
+     <SimplePredicate field="I11" operator="lessThan" value="4.5"/>
+     <SimplePredicate field="I7" operator="lessThan" value="30.5"/>
+     <SimplePredicate field="I12" operator="lessThan" value="0.5"/>
+     <SimplePredicate field="I8" operator="lessThan" value="35.5"/>
+    </CompoundPredicate>
+    <Node id="4" score="0.161799163179916" recordCount="47800">
+     <CompoundPredicate booleanOperator="surrogate">
+      <SimplePredicate field="I11" operator="lessThan" value="1.5"/>
+      <SimplePredicate field="I7" operator="lessThan" value="4.5"/>
+      <SimplePredicate field="I9" operator="lessThan" value="109.5"/>
+      <SimplePredicate field="I12" operator="lessThan" value="0.5"/>
+     </CompoundPredicate>
+    </Node>
+    <Node id="5" score="0.285769193811857" recordCount="20814">
+     <CompoundPredicate booleanOperator="surrogate">
+      <SimplePredicate field="I11" operator="greaterOrEqual" value="1.5"/>
+      <SimplePredicate field="I7" operator="greaterOrEqual" value="4.5"/>
+      <SimplePredicate field="I9" operator="greaterOrEqual" value="109.5"/>
+      <SimplePredicate field="I12" operator="greaterOrEqual" value="0.5"/>
+     </CompoundPredicate>
+    </Node>
+   </Node>
+   <Node id="3" score="0.379213662142356" recordCount="31386" defaultChild="6">
+    <CompoundPredicate booleanOperator="surrogate">
+     <SimplePredicate field="I1" operator="greaterOrEqual" value="0.5"/>
+     <SimplePredicate field="I10" operator="greaterOrEqual" value="0.5"/>
+     <SimplePredicate field="I11" operator="greaterOrEqual" value="4.5"/>
+     <SimplePredicate field="I7" operator="greaterOrEqual" value="30.5"/>
+     <SimplePredicate field="I12" operator="greaterOrEqual" value="0.5"/>
+     <SimplePredicate field="I8" operator="greaterOrEqual" value="35.5"/>
+    </CompoundPredicate>
+    <Node id="6" score="0.277648784064524" recordCount="16366">
+     <CompoundPredicate booleanOperator="surrogate">
+      <SimplePredicate field="I6" operator="greaterOrEqual" value="7.5"/>
+      <SimplePredicate field="I13" operator="greaterOrEqual" value="6.5"/>
+      <SimplePredicate field="I8" operator="greaterOrEqual" value="8.5"/>
+      <SimplePredicate field="I4" operator="greaterOrEqual" value="6.5"/>
+      <SimplePredicate field="I9" operator="greaterOrEqual" value="7.5"/>
+      <SimplePredicate field="I3" operator="greaterOrEqual" value="5.5"/>
+     </CompoundPredicate>
+    </Node>
+    <Node id="7" score="0.489880159786951" recordCount="15020">
+     <CompoundPredicate booleanOperator="surrogate">
+      <SimplePredicate field="I6" operator="lessThan" value="7.5"/>
+      <SimplePredicate field="I13" operator="lessThan" value="6.5"/>
+      <SimplePredicate field="I8" operator="lessThan" value="8.5"/>
+      <SimplePredicate field="I4" operator="lessThan" value="6.5"/>
+      <SimplePredicate field="I9" operator="lessThan" value="7.5"/>
+      <SimplePredicate field="I3" operator="lessThan" value="5.5"/>
+     </CompoundPredicate>
+    </Node>
+   </Node>
+  </Node>
+ </TreeModel>
+</PMML>

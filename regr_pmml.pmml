@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 http://www.dmg.org/v4-1/pmml-4-1.xsd">
+ <Header copyright="Copyright (c) 2014 mma" description="Advertising - Integer Variables">
+  <Extension name="user" value="mma" extender="Rattle/PMML"/>
+  <Application name="Rattle/PMML" version="1.4"/>
+  <Timestamp>2014-09-05 10:08:04</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="13">
+  <DataField name="Label" optype="continuous" dataType="double"/>
+  <DataField name="I1" optype="continuous" dataType="double"/>
+  <DataField name="I2" optype="continuous" dataType="double"/>
+  <DataField name="I3" optype="continuous" dataType="double"/>
+  <DataField name="I4" optype="continuous" dataType="double"/>
+  <DataField name="I6" optype="continuous" dataType="double"/>
+  <DataField name="I7" optype="continuous" dataType="double"/>
+  <DataField name="I8" optype="continuous" dataType="double"/>
+  <DataField name="I9" optype="continuous" dataType="double"/>
+  <DataField name="I10" optype="continuous" dataType="double"/>
+  <DataField name="I11" optype="continuous" dataType="double"/>
+  <DataField name="I12" optype="continuous" dataType="double"/>
+  <DataField name="I13" optype="continuous" dataType="double"/>
+ </DataDictionary>
+ <RegressionModel modelName="Advertising_LogistiRegression0" functionName="regression" algorithmName="least squares">
+  <MiningSchema>
+   <MiningField name="Label" usageType="predicted"/>
+   <MiningField name="I1" usageType="active"/>
+   <MiningField name="I2" usageType="active"/>
+   <MiningField name="I3" usageType="active"/>
+   <MiningField name="I4" usageType="active"/>
+   <MiningField name="I6" usageType="active"/>
+   <MiningField name="I7" usageType="active"/>
+   <MiningField name="I8" usageType="active"/>
+   <MiningField name="I9" usageType="active"/>
+   <MiningField name="I10" usageType="active"/>
+   <MiningField name="I11" usageType="active"/>
+   <MiningField name="I12" usageType="active"/>
+   <MiningField name="I13" usageType="active"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_Label" feature="predictedValue"/>
+  </Output>
+  <RegressionTable intercept="0.283121720902559">
+   <NumericPredictor name="I1" exponent="1" coefficient="0.000193420743763762"/>
+   <NumericPredictor name="I2" exponent="1" coefficient="5.2977527311947e-05"/>
+   <NumericPredictor name="I3" exponent="1" coefficient="-0.000261890875967239"/>
+   <NumericPredictor name="I4" exponent="1" coefficient="0.000263008901816674"/>
+   <NumericPredictor name="I6" exponent="1" coefficient="-0.000104363566911109"/>
+   <NumericPredictor name="I7" exponent="1" coefficient="-8.77815654114651e-05"/>
+   <NumericPredictor name="I8" exponent="1" coefficient="-0.00115814548739835"/>
+   <NumericPredictor name="I9" exponent="1" coefficient="4.90409086039488e-05"/>
+   <NumericPredictor name="I10" exponent="1" coefficient="0.0813938621845415"/>
+   <NumericPredictor name="I11" exponent="1" coefficient="0.00204499188933274"/>
+   <NumericPredictor name="I12" exponent="1" coefficient="0.00726845283467099"/>
+   <NumericPredictor name="I13" exponent="1" coefficient="-0.00391343779775275"/>
+  </RegressionTable>
+ </RegressionModel>
+</PMML>
