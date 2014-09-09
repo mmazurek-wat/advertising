@@ -44,9 +44,45 @@ generate_bins<-function(x,y){
 
 
 
-train_int.dt[,I1bin:=NULL]
-cols=c("I1", "I2", "I3", "I4")
-qcols=quote(cols)
+generate_cuts<-function(x,y){
+  freq<-table(x)
+  cumfreq<-cumsum(freq)/(length(x[!is.na(x)]))  
+  rel<-freq/(length(x[!is.na(x)]))
+  char_labels<-paste0(rownames(rel[rel>y]),"+")
+  breaks<-append(as.numeric(rownames(rel[rel>y])), max(freq))
+  l=list(char_labels, breaks)
+  return (l)  
+}
+
+
+lcuts<-list()
+
+for (i in names(train_int.dt)[3:ncol(train_int.dt)]){
+  q<-quote(i)
+  lcuts[[i]]<- generate_cuts(train_int.dt[,eval(q), with=FALSE][[1]], 0.01)
+}
+
+
+#zastosowanie do zbioru testowego: 
+test_bins<-test_int.dt[, list(Id, Label,
+                               I1_bin=cut(I1, unlist(lcuts$I1[2]), unlist(lcuts$I1[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I2_bin=cut(I1, unlist(lcuts$I2[2]), unlist(lcuts$I2[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I3_bin=cut(I1, unlist(lcuts$I3[2]), unlist(lcuts$I3[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I4_bin=cut(I1, unlist(lcuts$I4[2]), unlist(lcuts$I4[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I5_bin=cut(I1, unlist(lcuts$I5[2]), unlist(lcuts$I5[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I6_bin=cut(I1, unlist(lcuts$I6[2]), unlist(lcuts$I6[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I7_bin=cut(I1, unlist(lcuts$I7[2]), unlist(lcuts$I7[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I8_bin=cut(I1, unlist(lcuts$I8[2]), unlist(lcuts$I8[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I9_bin=cut(I1, unlist(lcuts$I9[2]), unlist(lcuts$I9[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I10_bin=cut(I1, unlist(lcuts$I10[2]), unlist(lcuts$I10[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I11_bin=cut(I1, unlist(lcuts$I11[2]), unlist(lcuts$I11[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I12_bin=cut(I1, unlist(lcuts$I12[2]), unlist(lcuts$I12[1]), right=FALSE, include.lowest=TRUE)  ,
+                                I13_bin=cut(I1, unlist(lcuts$I13[2]), unlist(lcuts$I13[1]), right=FALSE, include.lowest=TRUE)                                  
+)
+]
+
+
+
 
 
 #wzorocowe dla pojedynczej zmiennej: 
@@ -97,22 +133,6 @@ regr.fit<-glm(Label~I1_bin+I2_bin + I3_bin +I4_bin + I6_bin + I7_bin + I8_bin + 
 summary(regr.fit)
 
 
-#zastosowanie tych samych tranformacji do zbioru testowego 
-test_bins<-test_int.dt[, list(Id, Label,I1_bin=generate_bins(I1,0.01), 
-                                I2_bin=generate_bins(I2,0.01),
-                                I3_bin=generate_bins(I3,0.01),
-                                I4_bin=generate_bins(I4,0.01),
-                                I5_bin=generate_bins(I5,0.01),
-                                I6_bin=generate_bins(I6,0.01),
-                                I7_bin=generate_bins(I7,0.01),
-                                I8_bin=generate_bins(I8,0.01),
-                                I9_bin=generate_bins(I9,0.01),
-                                I10_bin=generate_bins(I10,0.01),
-                                I11_bin=generate_bins(I11,0.01),
-                                I12_bin=generate_bins(I12,0.01),
-                                I13_bin=generate_bins(I13,0.01)                                
-)
-]
 
 test_bins$Label<-factor(test_bins$Label)
 remove_na(test_bins)
