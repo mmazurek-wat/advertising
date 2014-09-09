@@ -85,6 +85,8 @@ train_int_std.dt<-data.table(train_int_std.dt)
 test.dt<-read.csv2("D:/Kaggle/Display Advertising Challange/test_Sample.csv", header = TRUE, sep = ",")
 test.dt<-read.csv2("D:/Kaggle/Display Advertising Challange/train_Sample_200M.csv", header = TRUE, sep = ",")
 
+test.dt<-data.table(test.dt)
+test_int.dt<-data.table(test.dt[,list(Id,Label, I1, I2, I3, I4, I5, I6, I7,I8, I9, I10, I11, I12,I13)])
 
 
 #standaryzacja zbioru testowego 
@@ -154,7 +156,7 @@ test.dt$prediction<-runif(nrow(test.dt),0,1)
 
 #model regresji logistycznej 
 
-regr.fit<-glm(factor(Label)~I1+I2 + I3 +I4 + I6 + I7 + I8 + I9 +I10 + I11 + I12 + I13, data=train_int_std.dt, family = binomial )
+regr.fit<-glm(factor(Label)~I1+I2 + I3 +I4 + I6 + I7 + I8 + I9 +I10 + I11 + I12 + I13, data=train_int.dt, family = binomial )
 summary(regr.fit)
 
 train_int_std.dt$Label
