@@ -87,7 +87,7 @@ test.dt<-read.csv2("D:/Kaggle/Display Advertising Challange/train_Sample_200M.cs
 
 test.dt<-data.table(test.dt)
 test_int.dt<-data.table(test.dt[,list(Id,Label, I1, I2, I3, I4, I5, I6, I7,I8, I9, I10, I11, I12,I13)])
-
+save(test_int.dt, file="test_int")
 
 #standaryzacja zbioru testowego 
 

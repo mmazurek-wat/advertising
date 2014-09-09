@@ -109,6 +109,7 @@ train_bins<-train_int.dt[, list(Id, Label,I1_bin=generate_bins(I1,0.01),
 
 train_bins$Label<-factor(train_bins$Label)
 save(train_bins, file="train_bins")
+save(test_bins, file="test_bins")
 save(train_int.dt, file="train_int")
 
 
@@ -134,12 +135,13 @@ summary(regr.fit)
 
 
 
-test_bins$Label<-factor(test_bins$Label)
+test_bins$Label<-test_bins$Label
 remove_na(test_bins)
 
 score_output<-predict(regr.fit, test_bins, type="response")
 
 
-llfun(test_int_std.dt$Label, score_output)
+llfun(test_bins$Label, score_output)
+
 
 
